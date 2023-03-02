@@ -46,17 +46,22 @@
 
 .bx1{
   background-color: #D9DCD6;
-  height: 20vh;
-  width: fit-content;
+  height: 40%;
+  width: 200px;
   display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
 }
 
 .bx2{
   background-color: #D9DCD6
   ;
-  height: fit-content;
+  height: fit-content; 
   width: fit-content;
   padding:2%;
+  display: flex;
+  justify-content: space-between;
  
 }
 
@@ -69,7 +74,9 @@
 
 .bx3{
   background-color: #D9DCD6;
-  height: fit-content;
+  height: 40%;
+  width: 200px;
+
   
 }
 
@@ -97,8 +104,11 @@
   height: 8em;
 }
 .navh1{
-  font-size: 200%;
+  font-size: xxx-large;
   width: 100%;
+  margin-top: 3%;
+  margin-bottom: 1%;
+
 }
 
 .chart{
@@ -118,13 +128,16 @@
 }
 
 #trendBox {
-  width:340px;
-  height:400px;
+  /* width:80%;
+  height:80%; */
   background: white;
   border-radius: 15px;
   position: absolute;
   top: 230px;
   left:40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 #trendTitle {
@@ -133,8 +146,13 @@
   transform: rotate(-15deg);
 }
 
+.gauge{
+  width: 60%;
+}
+
 #trendBox img {
-  width:80%;
+  /* width:80%;
+  height: 80%; */
   margin:auto;
   top:140px;
   left:30px;

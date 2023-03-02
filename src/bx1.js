@@ -4,8 +4,8 @@ import React, { Component }  from 'react';
 const Bx1 = () => {
   return ( 
 <div >
-<div className="trendBox">
-  <h2 className="trendTitle"> Job Trends</h2>
+<div className="trendBox bx bx1">
+  <h2 className="trendTitle"> Job Trend</h2>
 
   <img className="gauge"  src="https://assets.codepen.io/1240556/pointer.png" alt="" />
 
@@ -19,7 +19,7 @@ const Bx1 = () => {
     </div>
 
 </div>
-<input type="range" min="-50" max="50" value="0" className="slider myRange"/>
+{/* <input type="range" min="-50" max="50" value="0" className="slider myRange"/> */}
 </div>
    );
 }
