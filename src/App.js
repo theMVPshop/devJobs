@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './navbar';
+import Bx1 from './bx1';
+import Bx2 from './bx2';
+import Bx3 from './bx3';
+import React, { Component }  from 'react';
+// import Bxbottom from './bxbottom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section>
+      <Navbar/>
+      </section>
+
+
+      <main className="main">
+        
+        <Bx1/>
+        <Bx2/>
+        <Bx3/>
+
+      </main>
+
     </div>
   );
 }
 
-export default App;
+export default App
+;
