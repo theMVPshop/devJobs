@@ -36,3 +36,49 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  text-align: center;
+  background-color: #3A7CA5;
+}
+
+#header {
+  margin-top: 80px;
+  font-size: 40px;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #D9DCD6;
+  border-radius: 8px;
+  width: 60%;
+  margin: 60px auto auto auto;
+  padding: 1%;
+}
+
+#root > div > form > label > input {
+  margin-left: 3px;
+}
+
+#root > div > form > label > select {
+  text-align: center;
+  margin-left: 3px;
+}
+
+#root > div > div {
+  margin-top: 50px;
+}
+
+.searchContainer {
+  margin: 60px auto;
+  display: flex;
+}
+
+.searches {
+  border-radius: 8px;
+  margin: auto;
+  padding: 1%;
+  background-color: #D9DCD6;
+  border: 1px rgb(255, 255, 255) solid
+}
