@@ -19,7 +19,7 @@ const Bx1 = () => {
     </div>
 
 </div>
-{/* <input type="range" min="-50" max="50" value="0" className="slider myRange"/> */}
+<input type="range" min="-50" max="50" value="0" className="slider myRange"/>
 </div>
    );
 }
