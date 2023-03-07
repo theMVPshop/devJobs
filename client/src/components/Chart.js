@@ -6,6 +6,12 @@ export default function Chart() {
   const [remotes, setRemotes] = useState([]);
   const [terms, setTerms] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [searchParams, setSearchParams] = useState({
+    experience: '',
+    remote: '',
+    term: '',
+    location: ''
+  });
 
   const TOKEN = process.env.REACT_APP_TOKEN;
 
@@ -46,50 +52,103 @@ export default function Chart() {
     }
   }, [data]);
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-
-  const handleSearch = event => {
-    event.preventDefault();
-    //code for rendering graph
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setSearchParams(prevSearchParams => ({
+      ...prevSearchParams,
+      [name]: value
+    }));
   };
 
+  const handleSearch = async (event) => {
+    event.preventDefault();
+  
+    const filteredResults = data.filter((item) => {
+      const hasExperience = searchParams.experience
+        ? item.experience === searchParams.experience
+        : true;
+      const hasRemote = searchParams.remote
+        ? item.remote === (searchParams.remote === "true")
+        : true;
+      const hasTerm = searchParams.term ? item.term === searchParams.term : true;
+      const hasLocation = searchParams.location
+        ? item.location === searchParams.location
+        : true;
+  
+      return hasExperience && hasRemote && hasTerm && hasLocation;
+    });
+  
+    const searchIds = filteredResults.map((result) => result.searchId);
+  
+    const jobData = await Promise.all(
+      searchIds.map(async (searchId) => {
+        const response = await fetch(
+          `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        return data.response.results.filter((item) => item.searchId === searchId);
+      })
+    );
+    console.log(jobData);
+  };
+  
+
   return (
-    <form className='bx bx2' onSubmit={handleSearch}>
-      <label>
-        Experience:
-        <select name="experience">
-          {experiences.map(experience => (
-            <option key={experience} value={experience}>{experience}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Remote:
-        <select name="remote">
-          {remotes.map(remote => (
-            <option key={remote} value={remote}>{remote.toString()}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Term:
-        <select name="term">
-          {terms.map(term => (
-            <option key={term} value={term}>{term}</option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Location:
-        <select name="location">
-          {locations.map(location => (
-            <option key={location} value={location}>{location}</option>
-          ))}
-        </select>
-      </label>
-      <button type="submit">Search</button>
-    </form>
+    <div className='bx bx2'>
+      <form onSubmit={handleSearch}>
+        <label>
+          Experience:
+          <select name="experience" onChange={handleInputChange}>
+            <option value="">Select Experience</option>
+            {experiences.map(experience => (
+              <option key={experience} value={experience}>
+                {experience}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Remote:
+          <select name="remote" onChange={handleInputChange}>
+            <option value="">Select Remote</option>
+            {remotes.map(remote => (
+              <option key={remote} value={remote}>
+                {remote.toString()}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Term:
+          <select name="term" onChange={handleInputChange}>
+            <option value="">Select Term</option>
+            {terms.map(term => (
+              <option key={term} value={term}>
+                {term}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Location:
+          <select name="location" onChange={handleInputChange}>
+            <option value="">Select Location</option>
+            {locations.map(location => (
+              <option key={location} value={location}>
+                {location}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button type="submit">Search</button>
+      </form>
+    </div>
   );
 }
+
