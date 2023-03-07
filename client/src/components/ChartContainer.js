@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import JobsChart from './JobsChart.js'
 
-export default function Chart() {
+export default function ChartContainer() {
   const [data, setData] = useState(null);
   const [experiences, setExperiences] = useState([]);
   const [remotes, setRemotes] = useState([]);
@@ -12,7 +13,7 @@ export default function Chart() {
     term: '',
     location: ''
   });
-
+  let [jobData, setJobData] = useState(null);
   const TOKEN = process.env.REACT_APP_TOKEN;
 
   useEffect(() => {
@@ -80,7 +81,7 @@ export default function Chart() {
   
     const searchIds = filteredResults.map((result) => result.searchId);
   
-    const jobData = await Promise.all(
+    jobData = await Promise.all(
       searchIds.map(async (searchId) => {
         const response = await fetch(
           `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}`,
@@ -148,6 +149,7 @@ export default function Chart() {
         </label>
         <button type="submit">Search</button>
       </form>
+      <JobsChart />
     </div>
   );
 }
