@@ -81,7 +81,7 @@ export default function ChartContainer() {
   
     const searchIds = filteredResults.map((result) => result.searchId);
   
-    jobData = await Promise.all(
+    const jobData = await Promise.all(
       searchIds.map(async (searchId) => {
         const response = await fetch(
           `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}`,
@@ -96,10 +96,9 @@ export default function ChartContainer() {
         return data.response.results.filter((item) => item.searchId === searchId);
       })
     );
-    console.log(jobData);
-  };
+    setJobData(jobData);
+  };    
   
-
   return (
     <div className='bx bx2'>
       <form onSubmit={handleSearch}>
@@ -149,7 +148,7 @@ export default function ChartContainer() {
         </label>
         <button type="submit">Search</button>
       </form>
-      <JobsChart />
+      <JobsChart jobData={jobData} />
     </div>
   );
 }

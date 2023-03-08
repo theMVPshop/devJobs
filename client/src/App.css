@@ -55,12 +55,11 @@
 }
 
 .bx2{
-  background-color: #D9DCD6
-  ;
+  background-color: #D9DCD6;
   height: fit-content; 
   width: fit-content;
   padding:2%;
-  display: flex;
+  display:block;
   justify-content: space-between;
  
 }
