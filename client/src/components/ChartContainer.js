@@ -13,7 +13,7 @@ export default function ChartContainer() {
     term: '',
     location: ''
   });
-  let [jobData, setJobData] = useState(null);
+  const [jobData, setJobData] = useState(null);
   const TOKEN = process.env.REACT_APP_TOKEN;
 
   useEffect(() => {
@@ -81,24 +81,36 @@ export default function ChartContainer() {
   
     const searchIds = filteredResults.map((result) => result.searchId);
   
-    const jobData = await Promise.all(
-      searchIds.map(async (searchId) => {
-        const response = await fetch(
-          `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${TOKEN}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        return data.response.results.filter((item) => item.searchId === searchId);
-      })
-    );
-    setJobData(jobData);
-  };    
+    const responsePromises = searchIds.map((searchId) => {
+      let cursor = 0;
+      return (async () => {
+        const jobDataResponse = [];
+        do {
+          const response = await fetch(
+            `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}&cursor=${cursor}`,
+            {
+              headers: {
+                Authorization: `Bearer ${TOKEN}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.json();
+          jobDataResponse.push(...data.response.results);
   
+          if (data.response.remaining > 0) {
+            cursor += data.response.count;
+          } else {
+            cursor = null;
+          }
+        } while (cursor !== null);
+        setJobData(jobDataResponse);
+      })();
+    });
+  
+    await Promise.all(responsePromises);
+  };
+
   return (
     <div className='bx bx2'>
       <form onSubmit={handleSearch}>

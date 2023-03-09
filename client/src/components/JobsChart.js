@@ -3,20 +3,23 @@ import Chart from "chart.js/auto";
 
 export default function JobsChart({ jobData }) {
   const chartContainer = useRef(null);
+  const daysToDisplay = 30;
 
   useEffect(() => {
-    if (chartContainer && chartContainer.current && jobData && jobData.length > 0) {
+    if (chartContainer && chartContainer.current && Array.isArray(jobData) && jobData.length > 0) {
+      console.log(jobData.slice(-daysToDisplay));
+
       const chartConfig = {
         type: "line",
         data: {
-          labels: jobData[0].slice(0, 30).map((data) => {
+          labels: jobData.slice(-daysToDisplay).map((data) => {
             const date = new Date(data.searchDate);
             return date.toLocaleDateString();
           }),
           datasets: [
             {
               label: "Job Data",
-              data: jobData[0].slice(0, 30).map((data) => data.jobValue),
+              data: jobData.slice(-daysToDisplay).map((data) => data.jobValue),
               fill: false,
               borderColor: "rgb(75, 192, 192)",
               tension: 0.1,
@@ -35,7 +38,7 @@ export default function JobsChart({ jobData }) {
 
   return (
     <div>
-      {jobData && jobData.length > 0 ? (
+      {Array.isArray(jobData) && jobData.length > 0 ? (
         <canvas ref={chartContainer} />
       ) : (
         <p>No job data available</p>
