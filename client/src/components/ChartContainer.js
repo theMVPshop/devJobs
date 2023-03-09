@@ -79,38 +79,36 @@ export default function ChartContainer() {
       return hasExperience && hasRemote && hasTerm && hasLocation;
     });
   
-    const searchIds = filteredResults.map((result) => result.searchId);
+    const selectedResult = filteredResults[0];
+    const searchId = selectedResult.searchId;
   
-    const responsePromises = searchIds.map((searchId) => {
-      let cursor = 0;
-      return (async () => {
-        const jobDataResponse = [];
-        do {
-          const response = await fetch(
-            `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}&cursor=${cursor}`,
-            {
-              headers: {
-                Authorization: `Bearer ${TOKEN}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const data = await response.json();
-          jobDataResponse.push(...data.response.results);
+    let cursor = 0;
+    const jobDataResponse = [];
+    do {
+      const response = await fetch(
+        `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}&cursor=${cursor}`,
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      const filteredJobData = data.response.results.filter(
+        (job) => job.searchId === searchId
+      );
+      jobDataResponse.push(...filteredJobData);
   
-          if (data.response.remaining > 0) {
-            cursor += data.response.count;
-          } else {
-            cursor = null;
-          }
-        } while (cursor !== null);
-        setJobData(jobDataResponse);
-      })();
-    });
-  
-    await Promise.all(responsePromises);
+      if (data.response.remaining > 0) {
+        cursor += data.response.count;
+      } else {
+        cursor = null;
+      }
+    } while (cursor !== null);
+    setJobData(jobDataResponse);
   };
-
+  
   return (
     <div className='bx bx2'>
       <form onSubmit={handleSearch}>
