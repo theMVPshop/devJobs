@@ -14,9 +14,11 @@ export default function ChartContainer() {
     location: ''
   });
   const [jobData, setJobData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const TOKEN = process.env.REACT_APP_TOKEN;
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://learning.careers/version-test/api/1.1/obj/search', {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -26,9 +28,11 @@ export default function ChartContainer() {
       .then(response => response.json())
       .then(data => {
         setData(data.response.results);
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+        setLoading(false);
       });
   }, []);
 
@@ -63,6 +67,7 @@ export default function ChartContainer() {
 
   const handleSearch = async (event) => {
     event.preventDefault();
+    setLoading(true);
   
     const filteredResults = data.filter((item) => {
       const hasExperience = searchParams.experience
@@ -106,61 +111,68 @@ export default function ChartContainer() {
         cursor = null;
       }
     } while (cursor !== null);
-    setJobData(jobDataResponse);
+        setJobData(jobDataResponse);
+        setLoading(false);
   };
   
   return (
     <div className='bx bx2'>
       <form onSubmit={handleSearch}>
-        <label>
-          Experience:
-          <select name="experience" onChange={handleInputChange}>
-            <option value="">Select Experience</option>
-            {experiences.map(experience => (
-              <option key={experience} value={experience}>
-                  {experience === 'entryLevel' ? 'Entry Level' : experience === 'midLevel' ? 'Mid Level'
-                   : experience === 'seniorLevel' ? 'Senior Level' : experience}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Remote:
-          <select name="remote" onChange={handleInputChange}>
-            <option value="">Select Remote</option>
-            {remotes.map(remote => (
-              <option key={remote} value={remote}>
-                  {remote ? 'Yes' : 'No'}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Term:
-          <select name="term" onChange={handleInputChange}>
-            <option value="">Select Term</option>
-            {terms.map(term => (
-              <option key={term} value={term}>
-                {term}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Location:
-          <select name="location" onChange={handleInputChange}>
-            <option value="">Select Location</option>
-            {locations.map(location => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
-          </select>
-        </label>
+        <label htmlFor="experience">Experience:</label>
+        <select name="experience" id="experience" onChange={handleInputChange}>
+          <option value="">Select Experience</option>
+          {experiences.map((experience) => (
+            <option key={experience} value={experience}>
+              {experience === 'entryLevel'
+                ? 'Entry Level'
+                : experience === 'midLevel'
+                ? 'Mid Level'
+                : experience === 'seniorLevel'
+                ? 'Senior Level'
+                : experience}
+            </option>
+          ))}
+        </select>
+  
+        <label htmlFor="remote">Remote:</label>
+        <select name="remote" id="remote" onChange={handleInputChange}>
+          <option value="">Select Remote</option>
+          {remotes.map((remote) => (
+            <option key={remote} value={remote}>
+              {remote ? 'Yes' : 'No'}
+            </option>
+          ))}
+        </select>
+  
+        <label htmlFor="term">Term:</label>
+        <select name="term" id="term" onChange={handleInputChange}>
+          <option value="">Select Term</option>
+          {terms.map((term) => (
+            <option key={term} value={term}>
+              {term}
+            </option>
+          ))}
+        </select>
+  
+        <label htmlFor="location">Location:</label>
+        <select name="location" id="location" onChange={handleInputChange}>
+          <option value="">Select Location</option>
+          {locations.map((location) => (
+            <option key={location} value={location}>
+              {location}
+            </option>
+          ))}
+        </select>
+  
         <button type="submit">Search</button>
       </form>
-      <JobsChart jobData={jobData} />
+  
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <JobsChart jobData={jobData} />
+      )}
     </div>
   );
-}
+}  
 
