@@ -118,7 +118,8 @@ export default function ChartContainer() {
             <option value="">Select Experience</option>
             {experiences.map(experience => (
               <option key={experience} value={experience}>
-                {experience}
+                  {experience === 'entryLevel' ? 'Entry Level' : experience === 'midLevel' ? 'Mid Level'
+                   : experience === 'seniorLevel' ? 'Senior Level' : experience}
               </option>
             ))}
           </select>
@@ -129,7 +130,7 @@ export default function ChartContainer() {
             <option value="">Select Remote</option>
             {remotes.map(remote => (
               <option key={remote} value={remote}>
-                {remote.toString()}
+                  {remote ? 'Yes' : 'No'}
               </option>
             ))}
           </select>
