@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import JobsChart from './JobsChart.js'
+import React, { useState, useEffect, useContext } from "react";
+import JobsChart from "./JobsChart.js";
+import { JobDataContext } from "../JobDataContext";
 
 export default function ChartContainer() {
+  const { jobData, setJobData, setPercentageIncrease } = useContext(JobDataContext);
   const [data, setData] = useState(null);
   const [experiences, setExperiences] = useState([]);
   const [remotes, setRemotes] = useState([]);
@@ -13,7 +15,6 @@ export default function ChartContainer() {
     term: '',
     location: ''
   });
-  const [jobData, setJobData] = useState(null);
   const [loading, setLoading] = useState(false);
   const TOKEN = process.env.REACT_APP_TOKEN;
 
@@ -22,7 +23,7 @@ export default function ChartContainer() {
     fetch('https://learning.careers/version-test/api/1.1/obj/search', {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     })
       .then(response => response.json())
@@ -170,7 +171,7 @@ export default function ChartContainer() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <JobsChart jobData={jobData} />
+        <JobsChart jobData={jobData} onPercentageChange={setPercentageIncrease} />
       )}
     </div>
   );

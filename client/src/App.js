@@ -1,29 +1,27 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import './App.css';
 import Navbar from './navbar';
-import Bx1 from './bx1';
-import Bx3 from './bx3';
+import TrendMeter from './components/TrendMeter';
 import ChartContainer from './components/ChartContainer.js';
+import TopMarkets from './components/TopMarkets';
+import { JobDataProvider } from './JobDataContext';
 
 function App() {
   return (
     <div className="App">
       <section>
-      <Navbar/>
+        <Navbar/>
       </section>
 
-
       <main className="main">
-        
-        <Bx1/>
-        <ChartContainer/>
-        <Bx3/>
-
+        <JobDataProvider>
+          <TrendMeter />
+          <ChartContainer/>
+          <TopMarkets />
+        </JobDataProvider>
       </main>
-
     </div>
   );
 }
 
-export default App
-;
+export default App;
