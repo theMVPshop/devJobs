@@ -1,7 +1,7 @@
 
 import React, { Component }  from 'react';
 
-const Bx3 = () => {
+export default function TopMarkets() {
   return ( 
     <section className="bx bx3">
       <h2 className="topmark">Top Markets</h2>
@@ -18,5 +18,3 @@ const Bx3 = () => {
     </section>
    );
 }
- 
-export default Bx3 ;
