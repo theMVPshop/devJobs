@@ -59,11 +59,7 @@ export default function JobsChart({ jobData, onPercentageChange }) {
 
   return (
     <div>
-      {Array.isArray(jobData) && jobData.length > 0 ? (
-        <canvas ref={chartContainer} />
-      ) : (
-        <p>No job data available</p>
-      )}
+      {Array.isArray(jobData) && jobData.length > 0 && <canvas ref={chartContainer} />}
     </div>
   );
 }

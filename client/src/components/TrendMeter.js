@@ -4,11 +4,14 @@ import { JobDataContext } from "../JobDataContext";
 export default function TrendMeter() {
   const { percentageIncrease } = useContext(JobDataContext);
 
-  const minRotation = 125;
-  const maxRotation = 50; 
-  const rotationAngle = 360 + (percentageIncrease);
+  const minRotation = -50;
+  const maxRotation = 230;
+  const rotationRange = maxRotation - minRotation;
+  const percentageRange = Math.min(Math.max(percentageIncrease, 0), 100);
+  const rotationAngle = minRotation + (rotationRange * (percentageRange / 100));
+
   const gaugeStyle = {
-    transform: `rotate(${rotationAngle}deg)`,
+    transform: `rotate(${rotationAngle}deg) scaleX(-1)`,
   };
 
   return (
