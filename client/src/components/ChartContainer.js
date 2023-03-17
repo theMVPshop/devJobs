@@ -9,6 +9,7 @@ export default function ChartContainer() {
   const [remotes, setRemotes] = useState([]);
   const [terms, setTerms] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useState({
     experience: '',
     remote: '',
@@ -85,36 +86,42 @@ export default function ChartContainer() {
       return hasExperience && hasRemote && hasTerm && hasLocation;
     });
   
-    const selectedResult = filteredResults[0];
-    const searchId = selectedResult.searchId;
+    if (filteredResults.length > 0) {
+      const selectedResult = filteredResults[0];
+      const searchId = selectedResult.searchId;
   
-    let cursor = 0;
-    const jobDataResponse = [];
-    do {
-      const response = await fetch(
-        `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}&cursor=${cursor}`,
-        {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-            "Content-Type": "application/json",
-          },
+      let cursor = 0;
+      const jobDataResponse = [];
+      do {
+        const response = await fetch(
+          `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}&cursor=${cursor}`,
+          {
+            headers: {
+              Authorization: `Bearer ${TOKEN}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        const filteredJobData = data.response.results.filter(
+          (job) => job.searchId === searchId
+        );
+        jobDataResponse.push(...filteredJobData);
+  
+        if (data.response.remaining > 0) {
+          cursor += data.response.count;
+        } else {
+          cursor = null;
         }
-      );
-      const data = await response.json();
-      const filteredJobData = data.response.results.filter(
-        (job) => job.searchId === searchId
-      );
-      jobDataResponse.push(...filteredJobData);
-  
-      if (data.response.remaining > 0) {
-        cursor += data.response.count;
-      } else {
-        cursor = null;
-      }
-    } while (cursor !== null);
-        setJobData(jobDataResponse);
-        setLoading(false);
+      } while (cursor !== null);
+      setJobData(jobDataResponse);
+    } else {
+      setError(true);
+      console.error('No data available.');
+    }
+    setLoading(false);
   };
+  
   
   return (
     <div className='bx bx2'>
@@ -168,6 +175,8 @@ export default function ChartContainer() {
         <button type="submit">Search</button>
       </form>
   
+      {error && <p>No data available.</p>}
+  
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -175,5 +184,6 @@ export default function ChartContainer() {
       )}
     </div>
   );
+  
 }  
 
