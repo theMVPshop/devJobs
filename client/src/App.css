@@ -182,9 +182,14 @@ body {
   padding-top:130px;
 }
 
-#delta {
+.bx2 > form > label{
+  padding: 6px
 }
 
+#experience {
+  position: relative;
+  top: -3px;
+}
 
 @media only screen and (max-width: 1400px) {
   .App {
