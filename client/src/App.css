@@ -199,27 +199,21 @@ body {
     flex-direction: column;
   }
 
-  .bx1, .bx2, .bx3 {
-    width: 100%;
+  .bx1, .bx3 {
+    width: calc(50% - 0.5em);
+    margin-right: 1em;
     margin-bottom: 1em;
   }
 
-  .bx1 {
-    width: calc(50% - 0.5em);
-    margin-right: 1em;
-  }
-
   .bx2 {
-    width: fit-content;
+    width: 100%;
     margin-right: 0;
     order: -1;
-  }
-
-  .bx3 {
-    width: calc(50% - 0.5em);
-    margin-left: 1em;
+    margin-bottom: 1em;
   }
 }
+
+
 
 
 

@@ -67,9 +67,14 @@ export default function ChartContainer() {
     }));
   };
 
+  useEffect(() => {
+    setJobData([]);
+  }, [searchParams]);
+
   const handleSearch = async (event) => {
     event.preventDefault();
     setLoading(true);
+    setError(false);
   
     const filteredResults = data.filter((item) => {
       const hasExperience = searchParams.experience
