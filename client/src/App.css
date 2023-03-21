@@ -27,15 +27,13 @@ body {
   color: #61dafb;
 }
 
-.navbar{
-  background-color: #3A7CA5
-  ;
+.navbar {
+  background-color: #3A7CA5;
   display: flex;
   justify-content: center;
   align-items: center;
-  size: 50pt;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  font-size: 2.5vw;
+  padding: 1.5em 1em;
 }
 
 
@@ -46,14 +44,16 @@ body {
   border-radius: 8px;
 }
 
-.bx1{
+.bx1 {
   background-color: #D9DCD6;
-  height: 40%;
-  width: 200px;
+  height: fit-content;
+  width: 100%;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
- 
   align-items: center;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 .bx2{
@@ -75,8 +75,14 @@ body {
 
 .bx3{
   background-color: #D9DCD6;
-  height: 40%;
-  width: 200px;
+  height: fit-content;
+  width: 100%;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  margin-bottom: 1em;
 
   
 }
@@ -102,7 +108,7 @@ body {
 }
 
 .Dev{
-  height: 8em;
+  height: 3.5em;
 }
 .navh1{
   font-size: xxx-large;
@@ -123,14 +129,12 @@ body {
 }
 
 .trendLine{
-  /* background-color: #faa31c; */
   filter: invert(75%) sepia(100%) saturate(1500%) hue-rotate(346deg) brightness(93%) contrast(96%);
   border-radius: 55px;
 }
 
 #trendBox {
-  /* width:80%;
-  height:80%; */
+
   background: white;
   border-radius: 15px;
   position: absolute;
@@ -152,8 +156,6 @@ body {
 }
 
 #trendBox img {
-  /* width:80%;
-  height: 80%; */
   margin:auto;
   top:140px;
   left:30px;
@@ -177,7 +179,7 @@ body {
 }
 
 #percent {
-/*   width:60%; */
+
   font-size: 80px;
   padding-top:130px;
 }
@@ -191,57 +193,67 @@ body {
   top: -3px;
 }
 
-@media only screen and (max-width: 1400px) {
-  .App {
-    background-color: #3A7CA5;
-    align-items: center;
-
-  }
-
-  .main{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    place-items: start;
-
-  }
-
-  .navbar{
-    display: block;
-  }
-  .bx1{
-    grid-row:2/3;
-    grid-column: 1/2;
-    padding:15px;
-    width: 90%;
-    margin-top: 10%;
-    
-
-  }
-  .bx2{
-    grid-row: 1/2;
-    grid-column: 1/4;
-    width: 96%;
-    padding:15px;
-  }
-
-  
-
-  .bx3{
-    grid-row:2/3;
-    grid-column: 3/4;
-    padding:15px;
-    width: 90%;
-    margin-top: 10%;
-    
-  }
-  .bx4{
-    width: fit-content;
+@media (max-width: 1530px) {
+  .main {
     display: flex;
+    flex-direction: column;
   }
 
-  .chart{
+  .bx1, .bx2, .bx3 {
     width: 100%;
+    margin-bottom: 1em;
+  }
+
+  .bx1 {
+    width: calc(50% - 0.5em);
+    margin-right: 1em;
+  }
+
+  .bx2 {
+    width: fit-content;
+    margin-right: 0;
+    order: -1;
+  }
+
+  .bx3 {
+    width: calc(50% - 0.5em);
+    margin-left: 1em;
   }
 }
 
+
+
+
+
+
+@media (max-width: 768px) {
+  .navbar {
+    font-size: 3.5vw;
+    padding: 1em 0.5em;
+  }
+  
+  .navh1 {
+    font-size: 3.5vw
+  }
+
+  .Dev {
+    height: 1.75em;
+  }
+
+  .bx1 {
+    max-width: 30%;
+    width: 80%;
+    margin: 0 auto 1em auto;
+  }
+
+  .bx2 > div > canvas {
+    width: 90%;
+    height: 90%;
+  }
+
+  .bx3 {
+    max-width: 30%;
+    width: 80%;
+    margin: 0 auto 1em auto;
+  }
+}
