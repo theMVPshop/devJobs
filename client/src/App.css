@@ -195,30 +195,26 @@ body {
 
 @media (max-width: 1530px) {
   .main {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
   }
-
+  
   .bx1, .bx3 {
-    width: calc(50% - 0.5em);
-    margin-right: 1em;
-    margin-bottom: 1em;
+  flex-basis: calc(50% - 0.5em);
+  margin-right: 1em;
+  margin-bottom: 1em;
   }
-
+  
   .bx2 {
-    width: 100%;
-    margin-right: 0;
-    order: -1;
-    margin-bottom: 1em;
+  width: 100%;
+  margin-right: 0;
+  order: -1;
+  margin-bottom: 1em;
   }
 }
-
-
-
-
-
-
-
 
 @media (max-width: 768px) {
   .navbar {
