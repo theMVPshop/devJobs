@@ -8,7 +8,7 @@ const FormData = require('form-data');
 
 
 puppeteer.use(pluginStealth());
-const launchOptions = {headless: false, executablePath: executablePath()};
+const launchOptions = {headless: true, executablePath: executablePath()};
 
 async function getJobData(searchTerm, location, remote, experience, last24H) {
   const url = `https://www.indeed.com/jobs?q=${searchTerm}&l=${location}&sc=0kf%3A${remote}explvl%28${experience}%29%3B&radius=50${last24H}&vjk=2b9775de01edc6d0`;
