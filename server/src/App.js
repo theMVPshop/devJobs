@@ -1,14 +1,18 @@
-import React from 'react';
-import SearchBar from './components/SearchBar.js';
-import SearchList from './components/SearchList.js'
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home.js";
+import ServerChartContainer from "./components/ServerChartContainer";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1 id='header'>Current Available Searches</h1>
-      <SearchBar />
-      <SearchList />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/chart" element={<ServerChartContainer />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
