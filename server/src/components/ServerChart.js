@@ -9,8 +9,27 @@ export default class ServerChart extends Component {
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      this.renderChart();
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.jobData !== prevProps.jobData) {
+      setTimeout(() => {
+        this.renderChart();
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.chart) {
+      this.chart.destroy();
+    }
+  }
+
+  renderChart() {
     if (
-      this.chartContainer &&
       this.chartContainer.current &&
       Array.isArray(this.props.jobData) &&
       this.props.jobData.length > 0
@@ -18,10 +37,12 @@ export default class ServerChart extends Component {
       const chartConfig = {
         type: "line",
         data: {
-          labels: this.props.jobData.slice(-this.daysToDisplay).map((data) => {
-            const date = new Date(data.searchDate);
-            return date.toLocaleDateString();
-          }),
+          labels: this.props.jobData
+            .slice(-this.daysToDisplay)
+            .map((data) => {
+              const date = new Date(data.searchDate);
+              return date.toLocaleDateString();
+            }),
           datasets: [
             {
               label: "Jobs Posted",
@@ -36,47 +57,12 @@ export default class ServerChart extends Component {
         },
       };
 
-      this.chart = new Chart(this.chartContainer.current, chartConfig);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (
-      this.chartContainer &&
-      this.chartContainer.current &&
-      Array.isArray(this.props.jobData) &&
-      this.props.jobData.length > 0 &&
-      this.props.jobData !== prevProps.jobData
-    ) {
-      const chartConfig = {
-        type: "line",
-        data: {
-          labels: this.props.jobData.slice(-this.daysToDisplay).map((data) => {
-            const date = new Date(data.searchDate);
-            return date.toLocaleDateString();
-          }),
-          datasets: [
-            {
-              label: "Job Data",
-              data: this.props.jobData
-                .slice(-this.daysToDisplay)
-                .map((data) => data.jobValue),
-              fill: false,
-              borderColor: "rgb(75, 192, 192)",
-              tension: 0.1,
-            },
-          ],
-        },
-      };
-
-      this.chart.data = chartConfig.data;
-      this.chart.update();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.chart) {
-      this.chart.destroy();
+      if (this.chart) {
+        this.chart.data = chartConfig.data;
+        this.chart.update();
+      } else {
+        this.chart = new Chart(this.chartContainer.current, chartConfig);
+      }
     }
   }
 
