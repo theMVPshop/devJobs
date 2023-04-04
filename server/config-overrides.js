@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 const IgnorePlugin = webpack.IgnorePlugin;
+const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = function override(config) {
   const fallback = config.resolve.fallback || {};
@@ -38,5 +40,23 @@ module.exports = function override(config) {
       fullySpecified: false,
     },
   });
-  return config;
+
+  return {
+    entry: "/src/index.js",
+    target: "node",
+    externals: [nodeExternals()],
+    output: {
+      path: path.resolve("server-build"),
+      filename: "index.js",
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: "babel-loader",
+        },
+      ],
+    },
+    ...config,
+  };
 };
