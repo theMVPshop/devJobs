@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home.js";
 import ServerChartContainer from "./components/ServerChartContainer";
+import Data from "./components/ScrapedData.js";
 import "./App.css";
 
 function App() {
