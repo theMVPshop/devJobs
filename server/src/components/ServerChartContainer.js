@@ -65,21 +65,23 @@ export default class ServerChartContainer extends React.Component {
   render() {
     const { jobData, loading, error } = this.state;
     return (
-      <div className="chartHeaderContainer">
-        <div className="chartHeader">
-          <h2>Experience: Entry Level</h2>
-          <h2>Remote: Yes</h2>
-          <h2>Language: Javascript</h2>
-          <h2>Location: United States</h2>
+      <div className="serverChartContainer">
+        <div className="chartHeaderContainer">
+          <div className="chartHeader">
+            <h2>Experience: Entry Level</h2>
+            <h2>Remote: Yes</h2>
+            <h2>Language: Javascript</h2>
+            <h2>Location: United States</h2>
+          </div>
         </div>
-
-        <div className="serverChartContainer">
-          {loading && <p>Loading...</p>}
-          {error && <p>Error fetching data.</p>}
-          {!loading && !error && <ServerChart jobData={jobData} />}
-        </div>
+  
+        {loading && <p>Loading...</p>}
+        {error && <p>Error fetching data.</p>}
+        {!loading && !error && <ServerChart jobData={jobData} />}
+  
         <ScrapedData />
       </div>
     );
   }
+  
 }

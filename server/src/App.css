@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -92,7 +93,10 @@ body {
 }
 
 .chartHeader {
+  margin: auto;
   display: flex;
-  justify-content: space-between;
-  width:
+justify-content: center;
+}
+.chartHeaderContainer > div > h2 {
+  margin: 10px auto auto auto;
 }
