@@ -92,7 +92,6 @@ async function executeScrape() {
           experience,
           last24H
         );
-        console.log(jobData)
         const timeStamp = jobData.timeStamp;
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${TOKEN}`);
@@ -109,14 +108,14 @@ async function executeScrape() {
           redirect: "follow",
         };
 
-        // fetch request to post jobData
-        // const postResponse = await fetch(
-        //   "https://learning.careers/version-test/api/1.1/obj/jobData",
-        //   requestOptions
-        // );
+        fetch request to post jobData
+        const postResponse = await fetch(
+          "https://learning.careers/version-test/api/1.1/obj/jobData",
+          requestOptions
+        );
 
-        // const postResult = await postResponse.text();
-        // console.log(postResult);
+        const postResult = await postResponse.text();
+        console.log(postResult);
       } catch (error) {
         console.log("Error:", error);
       }
