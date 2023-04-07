@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -81,4 +82,21 @@ body {
   padding: 1%;
   background-color: #D9DCD6;
   border: 1px rgb(255, 255, 255) solid
+}
+
+.serverChartContainer {
+  margin: auto;
+  height: 60%;
+  width: 60%;
+  background-color: #D9DCD6;
+  border-radius: 10px;
+}
+
+.chartHeader {
+  margin: auto;
+  display: flex;
+justify-content: center;
+}
+.chartHeaderContainer > div > h2 {
+  margin: 10px auto auto auto;
 }
