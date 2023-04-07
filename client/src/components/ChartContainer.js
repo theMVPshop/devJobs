@@ -191,7 +191,7 @@ export default function ChartContainer() {
   };
 
   return (
-    <div className="bx bx2">
+    <div className="chartBox">
       <form onSubmit={handleSearch}>
         <label htmlFor="experience">Experience:</label>
         <select

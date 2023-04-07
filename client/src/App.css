@@ -1,26 +1,118 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Didact+Gothic&family=Roboto:wght@100&display=swap');
 body {
   background-color:#3A7CA5;
+  font-family: 'Bebas Neue';
 }
+
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: #3A7CA5;
-  font-family: 'Bebas Neue';
+  margin:auto;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  font-size: 27px;
+  background-color: antiquewhite;
+  width: 40%;
+  border-radius: 10px;
+  padding: 5px;
+  justify-content:space-around;
+  margin:15px auto 25px auto;
+  border: 1px solid black;
+  box-shadow: 7px 6px 8px -2px rgba(0,0,0,0.68);
+}
+
+.navbar img {
+  height: 50px;
+}
+
+.navh1 {
+  font-size: 50px;
+  margin:0 20px 0 20px;
+}
+
+.navh1 span {
+  font-size: 40px;;
 }
 
 .main {
-  background-color:#3A7CA5;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
+
+.main h2 {
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.trendBox, .topmark {
+  width:20%;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 10px 10px 8px -2px rgba(0,0,0,0.68);
+  background-color: antiquewhite;
+  padding-bottom: 20px;
+}
+
+.trendBox {
+  transform: rotate(-5deg);
+  position: relative;
+  top: 35px;
+  left: 10px;
+}
+
+.trendBox img {
+  width:80%;
+}
+
+.trendData {
+  background: white;
+  border-radius: 200px;
+  font-size: 13px;
+  text-align:center;
+  width: 50%;
+  padding-top: 50%;
+  top:90px;
+  left:35px;
+  position: absolute;
+  padding:10px;
+}
+
+.percent {
+    font-size: 70px;
+    margin: 0;
+}
+
+.chartBox {
+  width:55%;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 7px 6px 8px -2px rgba(0,0,0,0.68);
+  background-color: antiquewhite;
+  padding: 5px;
+}
+
+.topmark {
+  transform: rotate(5deg);
+  position: relative;
+  top: 35px;
+  right: 10px;
+}
+
+/* 
+.main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  font-size: calc(10px + 2vmin);
   padding: 5%;
   padding-top: 10px;
-
 }
 
 .App-link {
@@ -30,18 +122,19 @@ body {
 .navbar {
   background-color: #3A7CA5;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  font-size: 2.5vw;
-  padding: 1.5em 1em;
+  height:50px;
+  width: 90%;
+  border: red 1px solid;
+  margin: auto;
 }
-
-
 
 .bx{
   background-color: #D9DCD6;
   padding: 1%;
   border-radius: 8px;
+  height: 50px;
 }
 
 .bx1 {
@@ -103,8 +196,9 @@ body {
 }
 
 .bx4{
-  width: 60%;
+  width: 100%;
   display: flex;
+  margin: auto;
 }
 
 .Dev{
@@ -216,7 +310,9 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 950px) {
+
   .navbar {
     font-size: 3.5vw;
     padding: 1em 0.5em;
@@ -245,5 +341,151 @@ body {
     max-width: 30%;
     width: 80%;
     margin: 0 auto 1em auto;
+  }
+} */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .App {
+    min-width:450px;
+  }
+
+  .navbar {
+    width: 90%;
+  }
+
+  .main h2 {
+    font-size: 14px;
+  }
+
+  .trendData {
+    font-size:7px;
+    width: 40%;
+    top:46px;
+    left:20px;
+    padding:10px;
+  }
+
+  .marks {
+    padding-left: 20px;
+  }
+  
+  .percent {
+      font-size: 14px;
+      margin: 0;
+  }
+
+  .trendBox, .topmark {
+    padding-bottom: 0px;
+    width: 90px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .App {
+    width:500px;
+  }
+
+  .navbar {
+    width: 80%;
+  }
+
+  .main h2 {
+    font-size: 20px;
+  }
+
+  .trendData {
+    font-size:8px;
+    width: 40%;
+    top:54px;
+    left:24px;
+    padding:10px;
+  }
+
+  .marks {
+    padding-left: 40px;
+  }
+  
+  .percent {
+      font-size: 18px;
+      margin: 0;
+  }
+
+  .trendBox, .topmark {
+    padding-bottom: 20px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .App {
+    width:700px;
+  }
+
+  .navbar {
+    width: 60%;
+  }
+
+  .main h2 {
+    font-size: 30px;
+  }
+
+  .trendData {
+    font-size: 10px;
+    width: 40%;
+    top:70px;
+    left:38px;
+    padding:10px;
+  }
+  
+  .percent {
+      font-size: 28px;
+      margin: 0;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .App {
+    width:900px;
+  }
+
+  .trendData {
+    font-size: 11px;
+    width: 50%;
+    top:68px;
+    left:42px;
+    padding:10px;
+  }
+  
+  .percent {
+      font-size: 50px;
+      margin: 0;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .App {
+    width:1150px;
+  }
+
+  .trendData {
+    background: white;
+    border-radius: 200px;
+    font-size: 13px;
+    text-align:center;
+    width: 50%;
+    padding-top: 50%;
+    top:68px;
+    left:55px;
+    position: absolute;
+    padding:10px;
+  }
+  
+  .percent {
+      font-size: 70px;
+      margin: 0;
   }
 }

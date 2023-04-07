@@ -9,9 +9,7 @@ import { JobDataProvider } from './JobDataContext';
 function App() {
   return (
     <div className="App">
-      <section>
-        <Navbar/>
-      </section>
+      <Navbar/>
 
       <main className="main">
         <JobDataProvider>

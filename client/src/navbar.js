@@ -5,21 +5,9 @@ import React, { Component }  from 'react';
 const Navbar = () => {
   return ( 
     <nav className="navbar">
-        <section className="bx bx4">
-        <img src={femaleDev}alt='' className='Dev'/>
-          <h1 className="navh1">
-             DevJobsDaily.com </h1>
-         <img src={maleDev}alt='' className='Dev'/>
-        </section>
-          {/* <div className="links">
-            <a href="./"> Link </a>
-            <a href="./"> Link1 </a>
-            <a href="./"> Link2 </a>
-            <a href="./"> Link3 </a>
-            <a href="./"> Link4 </a>
-          </div> */}
-
-
+      <img src={femaleDev}alt='' className='dev'/>
+      <h1 className="navh1">D<span>ev</span>J<span>obs</span>D<span>aily</span>.c<span>om</span></h1>
+      <img src={maleDev}alt='' className='dev'/>
     </nav>
    );
 }

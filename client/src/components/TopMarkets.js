@@ -3,8 +3,8 @@ import React, { Component }  from 'react';
 
 export default function TopMarkets() {
   return ( 
-    <section className="bx bx3">
-      <h2 className="topmark">Top Markets</h2>
+    <section className="topmark">
+      <h2>Top Markets</h2>
       <ol className="marks">
       
        <li className= "mark"> DC</li>
