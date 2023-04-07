@@ -24,7 +24,7 @@ export default class ServerChartContainer extends React.Component {
   fetchJobData() {
     const TOKEN = process.env.REACT_APP_TOKEN;
     const { searchId, cursor, count } = this.state.searchParams;
-
+  
     fetch(
       `https://learning.careers/version-test/api/1.1/obj/jobData?searchId=${searchId}&cursor=${cursor}&count=${count}`,
       {
@@ -37,9 +37,9 @@ export default class ServerChartContainer extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         const { jobData } = this.state;
-        const newJobData = jobData.concat(data.response.results);
+        const newJobData = jobData.concat(data.response.results.filter(job => job.searchId === 1));
         const remaining = data.response.remaining;
-
+  
         if (remaining > 0) {
           this.setState(
             {
@@ -64,6 +64,7 @@ export default class ServerChartContainer extends React.Component {
 
   render() {
     const { jobData, loading, error } = this.state;
+    console.log(jobData)
     return (
       <div className="serverChartContainer">
         <div className="chartHeaderContainer">
