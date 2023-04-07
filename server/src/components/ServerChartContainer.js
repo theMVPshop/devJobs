@@ -64,7 +64,6 @@ export default class ServerChartContainer extends React.Component {
 
   render() {
     const { jobData, loading, error } = this.state;
-    console.log(jobData)
     return (
       <div className="serverChartContainer">
         <div className="chartHeaderContainer">
