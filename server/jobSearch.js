@@ -108,7 +108,7 @@ async function executeScrape() {
           redirect: "follow",
         };
 
-        fetch request to post jobData
+        // fetch request to post jobData
         const postResponse = await fetch(
           "https://learning.careers/version-test/api/1.1/obj/jobData",
           requestOptions
