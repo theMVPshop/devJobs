@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/jobSearch",
-      "schedule": "*/15 * * * *"
-    }
-  ]
-}
