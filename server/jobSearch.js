@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer-extra');
 const pluginStealth = require('puppeteer-extra-plugin-stealth');
-const {executablePath} = require('puppeteer');
+const {executablePath} = require('puppeteer-core');
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const Headers = fetch.Headers;
