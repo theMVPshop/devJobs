@@ -6,9 +6,7 @@
       "use": "@vercel/node"
     }
   ],
-  {
-    "buildCommand": "react-scripts --openssl-legacy-provider"
-  },
+    "buildCommand": "react-scripts --openssl-legacy-provider",
   "routes": [
     {
       "src": "/(.*)",
