@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const Headers = fetch.Headers;
 const FormData = require('form-data');
-
+console.log("job search");
 
 puppeteer.use(pluginStealth());
 const launchOptions = {headless: false, executablePath: executablePath()};
