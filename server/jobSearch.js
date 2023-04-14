@@ -1,17 +1,35 @@
 const puppeteer = require('puppeteer-extra');
 const pluginStealth = require('puppeteer-extra-plugin-stealth');
-const {executablePath} = require('puppeteer-core');
+// const {executablePath} = require('puppeteer-core');
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const Headers = fetch.Headers;
 const FormData = require('form-data');
+let chrome ={};
+let puppeteerRequire;
+
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  chrome = require("chrome-aws-lambda");
+  puppeteerRequire = require("puppeteer-core");
+} else {
+  puppeteerRequire = require("puppeteer");
+}
 
 puppeteer.use(pluginStealth());
-const launchOptions = {headless: true, executablePath: executablePath()};
 
 async function getJobData(searchTerm, location, remote, experience, last24H) {
   const url = `https://www.indeed.com/jobs?q=${searchTerm}&l=${location}&sc=0kf%3A${remote}explvl%28${experience}%29%3B&radius=50${last24H}&vjk=2b9775de01edc6d0`;
-
+  const launchOptions = {};
+  
+  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+    launchOptions = {
+      headless: true, 
+      ignoreHTTPSErrors: true;,
+      defaultViewport: chrome.devaultViewport,
+      executablePath: await chrome.executablePath,
+    };
+  };
+  
   try {
     const browser = await puppeteer.launch(launchOptions);
     const page = await browser.newPage();
