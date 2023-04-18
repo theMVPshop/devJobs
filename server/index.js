@@ -10,6 +10,8 @@ app.get("/", (req, res) => {
 });
 app.get("/scrape", async (req, res) => {
   executeScrape();
+});
+app.get("/test", async (req, res) => {
   await executeTest(req, res)
 });
 

@@ -15,16 +15,24 @@ async function executeTest(req, res) {
   // Edge executable will return an empty string locally.
   const executablePath = await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE
   
-  const browser = await puppeteer.launch({
-    executablePath,
-    args: edgeChromium.args,
-    headless: false,
-  })
+  try {
+    const browser = await puppeteer.launch({
+      executablePath,
+      args: edgeChromium.args,
+      headless: false,
+    });
   
-  const page = await browser.newPage()
-  await page.goto('https://github.com')
+    const page = await browser.newPage();
+    await page.goto('https://github.com');
   
-  res.send('hello')
+    console.log('Page loaded successfully');
+  
+    await browser.close();
+
+  } catch (err) {
+    console.error(err);
+    await browser.close();
+  }
 }
 
-module.exports = executeTest
+module.exports = { executeTest };
