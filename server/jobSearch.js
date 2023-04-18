@@ -74,6 +74,7 @@ dotenv.config();
 const TOKEN = process.env.TOKEN;
 
 async function executeScrape() {
+  res.send("Scrape on Vercel");
   try {
     const response = await fetch(
       "https://learning.careers/version-test/api/1.1/obj/search",
