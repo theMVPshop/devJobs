@@ -19,13 +19,13 @@ puppeteer.use(pluginStealth());
 
 async function getJobData(searchTerm, location, remote, experience, last24H) {
   const url = `https://www.indeed.com/jobs?q=${searchTerm}&l=${location}&sc=0kf%3A${remote}explvl%28${experience}%29%3B&radius=50${last24H}&vjk=2b9775de01edc6d0`;
-  const launchOptions = {};
+  let launchOptions = {};
   
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     launchOptions = {
       headless: true, 
       ignoreHTTPSErrors: true,
-      defaultViewport: chrome.devaultViewport,
+      defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
     };
   };
