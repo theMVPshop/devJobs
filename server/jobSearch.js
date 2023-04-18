@@ -24,7 +24,7 @@ async function getJobData(searchTerm, location, remote, experience, last24H) {
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     launchOptions = {
       headless: true, 
-      ignoreHTTPSErrors: true;,
+      ignoreHTTPSErrors: true,
       defaultViewport: chrome.devaultViewport,
       executablePath: await chrome.executablePath,
     };
