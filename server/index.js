@@ -5,6 +5,9 @@ const { executeTest } = require("./test.js")
 const app = express();
 const port = process.env.PORT || 3006;
 console.log("index prescrape");
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
 app.get("/scrape", async (req, res) => {
   // executeScrape();
   await executeTest(req, res)
