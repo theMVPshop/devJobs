@@ -1,13 +1,11 @@
 {
+  "version": 2,
   "functions": {
-    "api/executeScrape.js": {
+    "api/**/*.js": {
       "runtime": "nodejs14.x"
     }
   },
-  "rewrites": [
-    {
-      "source": "/scrape",
-      "destination": "/api/executeScrape.js"
-    }
+  "routes": [
+    { "src": "/api/executeScrape", "dest": "/api/executeScrape.js" }
   ]
 }
