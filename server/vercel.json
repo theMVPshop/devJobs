@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "index.js"
-    }
-  ],
   "functions": {
     "api/executeScrape.js": {
       "runtime": "nodejs14.x"
