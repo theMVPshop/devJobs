@@ -1,11 +1,20 @@
 {
   "version": 2,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    }
+  ],
   "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs@14.x"
+    "api/executeScrape.js": {
+      "runtime": "nodejs14.x"
     }
   },
-  "routes": [
-    { "src": "/api/executeScrape", "dest": "/api/executeScrape.js" }
+  "rewrites": [
+    {
+      "source": "/scrape",
+      "destination": "/api/executeScrape.js"
+    }
   ]
 }
