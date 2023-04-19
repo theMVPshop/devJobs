@@ -11,5 +11,16 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
+  ],
+  "functions": {
+    "api/executeScrape.js": {
+      "runtime": "nodejs14.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/scrape",
+      "destination": "/api/executeScrape.js"
+    }
   ]
 }
