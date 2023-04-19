@@ -19,13 +19,13 @@ puppeteer.use(pluginStealth());
 
 async function getJobData(searchTerm, location, remote, experience, last24H) {
   const url = `https://www.indeed.com/jobs?q=${searchTerm}&l=${location}&sc=0kf%3A${remote}explvl%28${experience}%29%3B&radius=50${last24H}&vjk=2b9775de01edc6d0`;
-  let launchOptions = {};
+  const launchOptions = {};
   
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     launchOptions = {
       headless: true, 
       ignoreHTTPSErrors: true,
-      defaultViewport: chrome.defaultViewport,
+      defaultViewport: chrome.devaultViewport,
       executablePath: await chrome.executablePath,
     };
   };
@@ -74,7 +74,6 @@ dotenv.config();
 const TOKEN = process.env.TOKEN;
 
 async function executeScrape() {
-  res.send("Scrape on Vercel");
   try {
     const response = await fetch(
       "https://learning.careers/version-test/api/1.1/obj/search",
@@ -142,7 +141,7 @@ async function executeScrape() {
   } catch (error) {
     console.log("Error fetching search data:", error);
   }
-}
+} 
 
 module.exports = {
   executeScrape,
