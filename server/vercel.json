@@ -16,6 +16,10 @@
     {
       "source": "/scrape",
       "destination": "/api/executeScrape.js"
+    },
+    {
+      "source": "/test",
+      "destination": "/api/test.js"
     }
   ]
 }
