@@ -8,12 +8,12 @@ console.log("index prescrape");
 app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
-// app.get("/scrape", async (req, res) => {
-//   executeScrape();
-// });
-// app.get("/test", async (req, res) => {
-//   await executeTest(req, res)
-// });
+app.get("/scrape", async (req, res) => {
+  executeScrape();
+});
+app.get("/test", async (req, res) => {
+  await executeTest(req, res)
+});
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

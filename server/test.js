@@ -23,7 +23,7 @@ async function executeTest(req, res) {
     });
   
     const page = await browser.newPage();
-    await page.goto('https://github.com', {timeout: 5000});
+    await page.goto('https://github.com');
   
     console.log('Page loaded successfully');
   
