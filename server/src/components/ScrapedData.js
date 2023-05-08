@@ -9,7 +9,7 @@ export default class ScrapedData extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://dev-jobs-server.vercel.app/scrape")
+    fetch("/scrape")
       .then((response) => response.json())
       .then((data) => {
         this.setState({ jobData: data });
